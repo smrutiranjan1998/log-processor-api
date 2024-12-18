@@ -1,0 +1,47 @@
+# Go-specific ignores
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.o
+*.tmp
+
+# Logs
+logs/*.log
+logs/processed_logs.txt
+
+# Compiled binaries
+main
+
+# Dependency directories
+vendor/
+go.sum
+
+# Build directories
+/build/
+bin/
+tmp/
+
+# Docker-specific ignores
+*.env
+docker-compose.override.yml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Postgres data
+.pgdata/
+.pgpass
+
+# Test coverage reports
+*.cover
+coverage.out

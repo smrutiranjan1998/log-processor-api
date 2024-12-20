@@ -41,6 +41,7 @@ Thumbs.db
 # Postgres data
 .pgdata/
 .pgpass
+postgre_data/
 
 # Test coverage reports
 *.cover

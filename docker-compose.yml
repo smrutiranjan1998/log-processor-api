@@ -1,22 +1,31 @@
-services:
-  database_service:
-    image: postgres:15.3
-    container_name: postgres_db_service
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: logdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./database:/docker-entrypoint-initdb.d
 
-  app:
+services:
+  golang_app_service:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: golang_app_service
+    container_name: golang_app_container
     ports:
-      - "8080:8080"
+      - "8080:8080" 
     depends_on:
-      - database_service
+      - postgres_renamed_service
+    volumes:
+      - ./logs:/app/logs 
+    environment:
+      DB_HOST: postgres_renamed_service
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASSWORD: password
+      DB_NAME: logdb_new 
+
+  postgres_renamed_service:
+    image: postgres:14
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: logdb_new 
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432" 
